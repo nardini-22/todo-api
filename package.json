@@ -1,0 +1,39 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "format": "biome format ./src",
+    "lint": "biome lint ./src",
+    "check": "biome check ./src",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "test": "vitest",
+    "db:up": "docker compose up -d"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.0.1",
+    "@fastify/swagger": "^9.5.1",
+    "@fastify/swagger-ui": "^5.2.2",
+    "@prisma/client": "^6.5.0",
+    "fastify": "^5.3.3",
+    "graphql": "^16.11.0",
+    "mercurius": "^16.1.0",
+    "pino-pretty": "^10.2.3",
+    "zod": "^3.22.4",
+    "zod-to-json-schema": "^3.22.1"
+  },
+  "devDependencies": {
+    "@apollo/rover": "^0.31.2",
+    "@biomejs/biome": "1.3.3",
+    "@types/node": "^20.9.2",
+    "prisma": "^6.5.0",
+    "tsx": "^4.1.3",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
+  }
+}
