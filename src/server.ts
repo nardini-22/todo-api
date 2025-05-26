@@ -4,6 +4,8 @@ import swagger from "@fastify/swagger";
 import swaggerUi from "@fastify/swagger-ui";
 import mercurius from "mercurius";
 import { taskRoutes } from "./modules/task/task.route";
+import { schema, resolvers } from "./graphql";
+import mercuriusCodegen from "mercurius-codegen";
 
 export async function buildServer(): Promise<FastifyInstance> {
   const server = fastify({
@@ -15,18 +17,6 @@ export async function buildServer(): Promise<FastifyInstance> {
     origin: true,
     credentials: true,
   });
-
-  const schema = `
-  type Query {
-    add(x: Int, y: Int): Int
-  }
-`;
-
-  const resolvers = {
-    Query: {
-      add: async (_: any, { x, y }: any) => x + y,
-    },
-  };
 
   server.register(mercurius, {
     schema,
@@ -55,6 +45,10 @@ export async function buildServer(): Promise<FastifyInstance> {
   });
 
   await server.register(taskRoutes, { prefix: "/" });
+
+  mercuriusCodegen(server, {
+    targetPath: "./src/graphql/generated.ts",
+  }).catch(console.error);
 
   return server;
 }
