@@ -32,7 +32,7 @@ export async function buildServer(): Promise<FastifyInstance> {
         description: "API documentation with Swagger",
         version: "1.0.0",
       },
-      host: "localhost:3000",
+      host: "localhost:4000",
       schemes: ["http"],
       consumes: ["application/json"],
       produces: ["application/json"],
